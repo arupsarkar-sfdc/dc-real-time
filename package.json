@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"copy:slds": "mkdir -p static/@salesforce-ux/design-system && cp -R node_modules/@salesforce-ux/design-system/assets static/@salesforce-ux/design-system",
-		"dev": "npm run copy:slds && vite dev",
+		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
 		"start": "serve -s dist",
