@@ -8,7 +8,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"start": "serve -s dist",
-		"heroku-postbuild": "npm run build"
+		"heroku-postbuild": "npm install && npm run build"
 	},
 	"dependencies": {
 		"@salesforce-ux/design-system": "^2.24.5",
