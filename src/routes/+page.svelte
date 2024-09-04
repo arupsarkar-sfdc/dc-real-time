@@ -1,6 +1,7 @@
 <script>
   import { fly, slide } from "svelte/transition";
   import { enhance } from "$app/forms";
+  import Products from "../components/Products.svelte";
   export let data;
   export let form;
   let creating = false;
@@ -8,27 +9,58 @@
 
   /** @type {number} */
   let number;
-
   async function roll() {
-    const response = await fetch("/roll");
-    number = await response.json();
+    try {
+      console.log("Sending salesforce events", "Start");
+      await SalesforceInteractions.sendEvent({
+        user: {
+          attributes: {
+            eventType: "contactPointEmail",
+            email: "user@domain.com",
+          },
+        },
+      });
+      console.log("Sending salesforce events", "End");
+      const response = await fetch("/roll");
+      number = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+
+    // const response = await fetch("/roll");
+    // number = await response.json();
   }
+
+  import { onMount } from "svelte";
+  
+
+  onMount(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://cdn.c360a.salesforce.com/beacon/c360a/4775e8e3-7b28-4ffd-b693-31bf4943d14b/scripts/c360a.min.js";
+    document.body.appendChild(script);
+  });
 </script>
 
-<div class="centered">
+<div>
+  <Products />
+</div>
+
+<!-- <div class="centered">
+
   <h1>Roll the dice</h1>
   <button on:click={roll}>Roll the dice</button>
 
   {#if number !== undefined}
     <p>You rolled a {number}</p>
   {/if}
-</div>
+</div> -->
 <!-- create a divider -->
 <hr />
 
 <div class="centered">
-  <h1>todos</h1>
-  {#if form?.error}
+  <!-- <h1>todos</h1> -->
+  <!-- {#if form?.error}
     <p class="error">{form.error}</p>
   {/if}
 
@@ -38,9 +70,9 @@
 
   {#if form?.sucess}
     <p class="saving">Success!!!</p>
-  {/if}
+  {/if} -->
 
-  <form
+  <!-- <form
     method="POST"
     action="?/create"
     use:enhance={() => {
@@ -89,9 +121,9 @@
         }}
       />
     </label>
-  </form>
+  </form> -->
 
-  <ul class="todos">
+  <!-- <ul class="todos">
     {#each data.todos.filter((todo) => !deleting.includes(todo.id)) as todo (todo.id)}
       <li in:fly={{ y: 20 }} out:slide>
         <form
@@ -113,7 +145,7 @@
         </form>
       </li>
     {/each}
-  </ul>
+  </ul> -->
 </div>
 
 <style>

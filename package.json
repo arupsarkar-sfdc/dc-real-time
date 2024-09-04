@@ -3,13 +3,15 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"copy:slds": "mkdir -p static/@salesforce-ux/design-system && cp -R node_modules/@salesforce-ux/design-system/assets static/@salesforce-ux/design-system",
+		"dev": "npm run copy:slds && vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
 		"start": "serve -s dist",
-		"heroku-postbuild": "npm run build"		
+		"heroku-postbuild": "npm run build"
 	},
 	"dependencies": {
+		"@salesforce-ux/design-system": "^2.24.5",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
@@ -18,7 +20,7 @@
 		"vite": "^5.0.3"
 	},
 	"engines": {
-		"node": ">=20.x"
+		"node": "20.x"
 	},
 	"type": "module"
 }
