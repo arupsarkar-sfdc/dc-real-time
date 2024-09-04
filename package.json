@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
+		"preinstall": "npm install vite",
 		"copy:slds": "mkdir -p static/@salesforce-ux/design-system && cp -R node_modules/@salesforce-ux/design-system/assets static/@salesforce-ux/design-system",
 		"dev": "vite dev",
 		"build": "vite build",
