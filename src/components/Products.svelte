@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
 
   let isDisney = false;
+  let personalizationData = null;
 
   onMount(() => {
     console.log(window.innerWidth);
