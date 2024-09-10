@@ -39,10 +39,31 @@ let email = ""
   }
 
   function saveLogin() {
-	window.username = document.getElementById("username").value;
+	  window.username = document.getElementById("username").value;
+    console.log("username", window.username);
+    // window.username = username;
     // Logic to save login credentials (you can implement form submission or validation)
     closeLoginModal();
-  }  
+  } 
+  let selectedOption = ''; // To store the selected option
+
+  // Event handler for capturing the selected value
+function handleConsentOptInButtonClick(event) {
+  const selectedOption = event.target.id;
+  const optInEvent = new CustomEvent('click', {
+    detail: { OptIn: true }
+    });  
+  window.dispatchEvent(optInEvent);
+  console.log('Selected:', selectedOption);
+}
+function handleConsentOptOutButtonClick(event) {
+  const selectedOption = event.target.id;
+  const optOutEvent = new CustomEvent('click', {
+    detail: { OptOut: true }
+    });  
+  window.dispatchEvent(optOutEvent);
+  console.log('Selected:', selectedOption);
+}
 </script>
 
 <nav class="navigation">
@@ -52,6 +73,14 @@ let email = ""
     <a href="/contact">Contact</a>
     <a href="/blog">Blog</a>
   </ul>
+    <!-- Dropdown for Opt-In/Opt-Out -->
+  <!-- Opt-In and Opt-Out buttons -->
+  <button id="opt-in" class="slds-button slds-button_neutral" on:click={handleConsentOptInButtonClick}>
+    Opt-In
+  </button>
+  <button id="opt-out" class="slds-button slds-button_neutral" on:click={handleConsentOptOutButtonClick}>
+    Opt-Out
+  </button>
   <div class="opt-buttons">
     <button id="login" on:click={openLoginModal} >Login</button>
     <button on:click={openModal}>Register</button>
@@ -247,4 +276,5 @@ let email = ""
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
+  /* Add any custom styles here if necessary */
 </style>

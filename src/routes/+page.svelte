@@ -36,9 +36,9 @@
 
   onMount(() => {
     const script = document.createElement("script");
-    // script.src =
-    //   "https://cdn.c360a.salesforce.com/beacon/c360a/4775e8e3-7b28-4ffd-b693-31bf4943d14b/scripts/c360a.min.js";
-    script.src = "https://cdn.c360a.salesforce.com/beacon/c360a/d9e6cae4-a62e-42a4-80a5-2dfd270353c0/scripts/c360a.min.js";
+    script.src =
+      "https://cdn.c360a.salesforce.com/beacon/c360a/4775e8e3-7b28-4ffd-b693-31bf4943d14b/scripts/c360a.min.js";
+    // script.src = "https://cdn.c360a.salesforce.com/beacon/c360a/d9e6cae4-a62e-42a4-80a5-2dfd270353c0/scripts/c360a.min.js";
     document.body.appendChild(script);
   });
 </script>
