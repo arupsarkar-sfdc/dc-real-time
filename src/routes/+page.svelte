@@ -1,7 +1,7 @@
 <script>
   import { fly, slide } from "svelte/transition";
   import { enhance } from "$app/forms";
-  import Products from "../components/Products.svelte";
+  // import Products from "./products/+page.svelte";
   export let data;
   export let form;
   let creating = false;
@@ -35,16 +35,19 @@
   
 
   onMount(() => {
+    console.log("onMount", "Loading salesforce interactions beacon - Start");
     const script = document.createElement("script");
     script.src =
       "https://cdn.c360a.salesforce.com/beacon/c360a/4775e8e3-7b28-4ffd-b693-31bf4943d14b/scripts/c360a.min.js";
     // script.src = "https://cdn.c360a.salesforce.com/beacon/c360a/d9e6cae4-a62e-42a4-80a5-2dfd270353c0/scripts/c360a.min.js";
     document.body.appendChild(script);
+    console.log("onMount", "Loading salesforce interactions beacon - End");    
   });
 </script>
 
 <div>
-  <Products />
+  <!-- <Products /> -->
+   <h1> This is a home page - Under Contruction </h1>
 </div>
 
 <!-- <div class="centered">
